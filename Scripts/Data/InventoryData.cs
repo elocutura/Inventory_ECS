@@ -12,6 +12,7 @@ public class InventoryData : MonoBehaviour {
 
     public uint maxInventorySlots = 10;
 
+    public bool allowInteractions = true;
     public UI_Slot[] inventoryUIGrid = new UI_Slot[10];
     public Text inventoryListText;
 }

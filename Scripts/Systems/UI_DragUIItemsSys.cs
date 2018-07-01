@@ -41,16 +41,19 @@ public class UI_DragUIItemsSys : ComponentSystem
 
             for (int i = 0; i < data.Length; i++)
             {
-                foreach (UI_Slot slot in data.invData[i].inventoryUIGrid) // For each slot in that inventory
+                if (data.invData[i].allowInteractions)
                 {
-                    if (MouseInsideUiItem(slot.rectTransform) && slot.itemHolding != null) // If the mouse is inside a valid slot and we are not dragging something aleady, setup to drag item in this specific slot
+                    foreach (UI_Slot slot in data.invData[i].inventoryUIGrid) // For each slot in that inventory
                     {
-                        draggingSlot = slot;
-                        draggingFromInventory = data.invData[i];
+                        if (MouseInsideUiItem(slot.rectTransform) && slot.itemHolding != null) // If the mouse is inside a valid slot and we are not dragging something aleady, setup to drag item in this specific slot
+                        {
+                            draggingSlot = slot;
+                            draggingFromInventory = data.invData[i];
 
-                        tempSlot.slotImage.sprite = draggingSlot.slotImage.sprite;
-                        tempSlot.slotImage.color = new Color(1, 1, 1, 1);
-                        tempSlot.stackText.text = draggingSlot.stackText.text;
+                            tempSlot.slotImage.sprite = draggingSlot.slotImage.sprite;
+                            tempSlot.slotImage.color = new Color(1, 1, 1, 1);
+                            tempSlot.stackText.text = draggingSlot.stackText.text;
+                        }
                     }
                 }
             }
@@ -133,19 +136,22 @@ public class UI_DragUIItemsSys : ComponentSystem
 
         for (int i = 0; i < data.Length; i++) // loop through all inventories
         {
-            foreach (UI_Slot slot in data.invData[i].inventoryUIGrid) // Look through all slots in that inventory
+            if (data.invData[i].allowInteractions) // Only check this inventory slots if the inventory allowsinteractions
             {
-                canvas = slot.rectTransform.GetComponentInParent<Canvas>(); // Canvas holding this RectTransform
-                // Correction of width and height to match screen for the calculations of the cursor
-                correctedWidth = slot.rectTransform.rect.width * canvas.scaleFactor;
-                correctedHeight = slot.rectTransform.rect.height * canvas.scaleFactor;
-
-                if (mousePos.x > slot.rectTransform.position.x - correctedWidth / 2 && mousePos.x < slot.rectTransform.position.x + correctedWidth / 2) // Its in the same vertical coordinates
+                foreach (UI_Slot slot in data.invData[i].inventoryUIGrid) // Look through all slots in that inventory
                 {
-                    if (mousePos.y > slot.rectTransform.position.y - correctedHeight / 2 && mousePos.y < slot.rectTransform.position.y + correctedHeight / 2)// Its in the same horizontal coordinates
+                    canvas = slot.rectTransform.GetComponentInParent<Canvas>(); // Canvas holding this RectTransform
+                                                                                // Correction of width and height to match screen for the calculations of the cursor
+                    correctedWidth = slot.rectTransform.rect.width * canvas.scaleFactor;
+                    correctedHeight = slot.rectTransform.rect.height * canvas.scaleFactor;
+
+                    if (mousePos.x > slot.rectTransform.position.x - correctedWidth / 2 && mousePos.x < slot.rectTransform.position.x + correctedWidth / 2) // Its in the same vertical coordinates
                     {
-                        toReturn.Add(slot, data.invData[i]);
-                        return toReturn;
+                        if (mousePos.y > slot.rectTransform.position.y - correctedHeight / 2 && mousePos.y < slot.rectTransform.position.y + correctedHeight / 2)// Its in the same horizontal coordinates
+                        {
+                            toReturn.Add(slot, data.invData[i]);
+                            return toReturn;
+                        }
                     }
                 }
             }

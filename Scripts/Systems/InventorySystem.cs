@@ -12,9 +12,6 @@ public class InventorySystem : ComponentSystem {
     public delegate void UI_UpdateRequest(InventoryData invData);
     public static event UI_UpdateRequest Ui_UpdateRequest;
 
-    private float invetoriesCheckCD = 0.5f;
-    private float timer = 0.5f;
-
     protected override void OnStartRunning()
     {
         base.OnStartRunning();
