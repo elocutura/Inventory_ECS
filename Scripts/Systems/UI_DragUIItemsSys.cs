@@ -43,12 +43,11 @@ public class UI_DragUIItemsSys : ComponentSystem
             {
                 foreach (UI_Slot slot in data.invData[i].inventoryUIGrid) // For each slot in that inventory
                 {
-                    if (MouseInsideUiItem(slot.rectTransform) && slot.itemHolding != null)
+                    if (MouseInsideUiItem(slot.rectTransform) && slot.itemHolding != null) // If the mouse is inside a valid slot and we are not dragging something aleady, setup to drag item in this specific slot
                     {
                         draggingSlot = slot;
                         draggingFromInventory = data.invData[i];
 
-                        tempSlot.gameObject.SetActive(true);
                         tempSlot.slotImage.sprite = draggingSlot.slotImage.sprite;
                         tempSlot.slotImage.color = new Color(1, 1, 1, 1);
                         tempSlot.stackText.text = draggingSlot.stackText.text;
@@ -62,6 +61,7 @@ public class UI_DragUIItemsSys : ComponentSystem
             Dictionary<UI_Slot, InventoryData> destinationSlotInventory = OnTopOfSlot();
             UI_Slot destinationSlot = null;
             InventoryData destionationInventory = null;
+            Item i;
             if (destinationSlotInventory != null) // Check if the mouse is on top of a slot
             {
 
@@ -74,7 +74,7 @@ public class UI_DragUIItemsSys : ComponentSystem
                 {
                     if (destionationInventory == draggingFromInventory) // If the destination slot is in the same inventory as the items, tell the inventorySystem we want to move this item into the new pos
                     {
-                        Item i = draggingSlot.itemHolding.CreateCopy();
+                        i = draggingSlot.itemHolding.CreateCopy();
 
                         InventoryAction action = new InventoryAction();
                         action._action = InventoryAction.action.MoveBySlot;
@@ -91,7 +91,7 @@ public class UI_DragUIItemsSys : ComponentSystem
                     }
                     else // If we are trying to move this item into a new inventory
                     {
-                        Item i = draggingSlot.itemHolding.CreateCopy();
+                        i = draggingSlot.itemHolding.CreateCopy();
 
                         InventoryAction depositAction = new InventoryAction(); // A deposit action for the inventory that will receive the item
                         depositAction._action = InventoryAction.action.Deposit;
@@ -114,7 +114,7 @@ public class UI_DragUIItemsSys : ComponentSystem
             tempSlot.slotImage.color = new Color(1, 1, 1, 0);
             tempSlot.slotImage.sprite = null;
             tempSlot.stackText.text = "";
-            tempSlot.gameObject.SetActive(false);
+            tempSlot.transform.position = new Vector3(-200, -200, 0); // Move it out of the canvas, its not disabled and enabled every time for performance reasons
         }
         if (draggingSlot != null)
         {
@@ -136,7 +136,7 @@ public class UI_DragUIItemsSys : ComponentSystem
             foreach (UI_Slot slot in data.invData[i].inventoryUIGrid) // Look through all slots in that inventory
             {
                 canvas = slot.rectTransform.GetComponentInParent<Canvas>(); // Canvas holding this RectTransform
-                // Correction of widht and height to match screen for the calculations of the cursor
+                // Correction of width and height to match screen for the calculations of the cursor
                 correctedWidth = slot.rectTransform.rect.width * canvas.scaleFactor;
                 correctedHeight = slot.rectTransform.rect.height * canvas.scaleFactor;
 
@@ -161,7 +161,7 @@ public class UI_DragUIItemsSys : ComponentSystem
         Vector3 mousePos = Input.mousePosition;
 
         Canvas canvas = itemTransform.GetComponentInParent<Canvas>(); // Canvas holding this RectTransform
-        // Correction of widht and height to match screen for the calculations of the cursor
+        // Correction of width and height to match screen for the calculations of the cursor
         float correctedWidth = itemTransform.rect.width * canvas.scaleFactor;
         float correctedHeight = itemTransform.rect.height * canvas.scaleFactor;
 
