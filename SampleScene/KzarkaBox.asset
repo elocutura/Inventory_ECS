@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd7e352ee62faa0409574760b3366f3d, type: 3}
-  m_Name: Malbulo
+  m_Name: KzarkaBox
   m_EditorClassIdentifier: 
-  itemID: 2
-  itemName: Malbulo
+  itemID: 77
+  itemName: KzarkaBox
   itemInventorySlot: 0
   quantity: 1
-  maxQuantity: 4
-  itemIcon: {fileID: 21300000, guid: 364de1d30c021de4e8a712c3f065ac96, type: 3}
+  maxQuantity: 1
+  itemIcon: {fileID: 21300000, guid: 2502c5dcf9b79fe4fabcf9aacebb52da, type: 3}

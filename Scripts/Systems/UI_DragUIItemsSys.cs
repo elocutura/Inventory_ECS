@@ -53,6 +53,8 @@ public class UI_DragUIItemsSys : ComponentSystem
                             tempSlot.slotImage.sprite = draggingSlot.slotImage.sprite;
                             tempSlot.slotImage.color = new Color(1, 1, 1, 1);
                             tempSlot.stackText.text = draggingSlot.stackText.text;
+
+                            Cursor.visible = false; // Hide mouse cursor, the tempSlot already shows the cursor position
                         }
                     }
                 }
@@ -65,6 +67,8 @@ public class UI_DragUIItemsSys : ComponentSystem
             UI_Slot destinationSlot = null;
             InventoryData destionationInventory = null;
             Item i;
+            Cursor.visible = true;
+
             if (destinationSlotInventory != null) // Check if the mouse is on top of a slot
             {
 
