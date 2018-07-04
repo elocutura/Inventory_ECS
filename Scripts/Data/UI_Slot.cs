@@ -7,11 +7,14 @@ public class UI_Slot : MonoBehaviour
 {
     [HideInInspector]
     public Item itemHolding;
+    [HideInInspector]
+    public int slotIndex;
+
+    [Header("Accepts items of type: (Generic = all items)")]
+    public Item.ItemType slotType;
 
     [Header ("RectTransform attached to this object")]
     public RectTransform rectTransform;
-    [HideInInspector]
-    public int slotIndex;
 
     [Header ("Image and Text in children to display the object")]
     public Image slotImage;

@@ -1653,8 +1653,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224377381614230772}
   slotIndex: 0
+  rectTransform: {fileID: 224377381614230772}
   slotImage: {fileID: 114517391953266306}
   stackText: {fileID: 114231282559498994}
 --- !u!114 &114088485489285280
@@ -1669,8 +1669,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224285379837903802}
   slotIndex: 0
+  rectTransform: {fileID: 224285379837903802}
   slotImage: {fileID: 114549348041676660}
   stackText: {fileID: 114831404196330786}
 --- !u!114 &114094405038164456
@@ -1811,8 +1811,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224543256956437528}
   slotIndex: 0
+  rectTransform: {fileID: 224543256956437528}
   slotImage: {fileID: 114415219624383652}
   stackText: {fileID: 114752504589746568}
 --- !u!114 &114137704267804690
@@ -1860,8 +1860,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224828581110327980}
   slotIndex: 0
+  rectTransform: {fileID: 224828581110327980}
   slotImage: {fileID: 114998458146021844}
   stackText: {fileID: 114702550320294014}
 --- !u!114 &114141580683673582
@@ -1912,8 +1912,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224873485473857916}
   slotIndex: 0
+  rectTransform: {fileID: 224873485473857916}
   slotImage: {fileID: 114313746828613858}
   stackText: {fileID: 114458732805100022}
 --- !u!114 &114159864661462380
@@ -2125,8 +2125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224721593061338846}
   slotIndex: 0
+  rectTransform: {fileID: 224721593061338846}
   slotImage: {fileID: 114217681362236384}
   stackText: {fileID: 114218905030949308}
 --- !u!114 &114230833374465204
@@ -2141,8 +2141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224527336297555436}
   slotIndex: 0
+  rectTransform: {fileID: 224527336297555436}
   slotImage: {fileID: 114994715486644578}
   stackText: {fileID: 114315321513903782}
 --- !u!114 &114230901985728722
@@ -2247,8 +2247,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224412139802901494}
   slotIndex: 0
+  rectTransform: {fileID: 224412139802901494}
   slotImage: {fileID: 114242012408013904}
   stackText: {fileID: 114871876139349604}
 --- !u!114 &114251670157768044
@@ -2304,8 +2304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224223942593827936}
   slotIndex: 0
+  rectTransform: {fileID: 224223942593827936}
   slotImage: {fileID: 114542815692920360}
   stackText: {fileID: 114025557513385450}
 --- !u!114 &114270243428180970
@@ -2320,8 +2320,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224312201145792776}
   slotIndex: 0
+  rectTransform: {fileID: 224312201145792776}
   slotImage: {fileID: 114615448525909928}
   stackText: {fileID: 114799451171439616}
 --- !u!114 &114271512053038180
@@ -2399,8 +2399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224387185285806792}
   slotIndex: 0
+  rectTransform: {fileID: 224387185285806792}
   slotImage: {fileID: 114399865811658406}
   stackText: {fileID: 114137704267804690}
 --- !u!114 &114287503775364652
@@ -2502,8 +2502,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224115299103244522}
   slotIndex: 0
+  rectTransform: {fileID: 224115299103244522}
   slotImage: {fileID: 114987429641986790}
   stackText: {fileID: 114674836689300440}
 --- !u!114 &114313746828613858
@@ -2797,8 +2797,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224867128614057596}
   slotIndex: 0
+  rectTransform: {fileID: 224867128614057596}
   slotImage: {fileID: 114594186452858446}
   stackText: {fileID: 114345006189530334}
 --- !u!114 &114399865811658406
@@ -3220,8 +3220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224609078474594350}
   slotIndex: 0
+  rectTransform: {fileID: 224609078474594350}
   slotImage: {fileID: 114113799883049980}
   stackText: {fileID: 114723748371373172}
 --- !u!114 &114534961871501276
@@ -3320,8 +3320,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224749460336287954}
   slotIndex: 0
+  rectTransform: {fileID: 224749460336287954}
   slotImage: {fileID: 114779214650216040}
   stackText: {fileID: 114880618865780052}
 --- !u!114 &114555679003045274
@@ -3363,8 +3363,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224991249842856360}
   slotIndex: 0
+  rectTransform: {fileID: 224991249842856360}
   slotImage: {fileID: 114330202379224606}
   stackText: {fileID: 114984949587210108}
 --- !u!114 &114568718980755360
@@ -3619,8 +3619,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224918712343932830}
   slotIndex: 0
+  rectTransform: {fileID: 224918712343932830}
   slotImage: {fileID: 114094405038164456}
   stackText: {fileID: 114332193658463524}
 --- !u!114 &114658946617037320
@@ -3646,8 +3646,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224526397039490558}
   slotIndex: 0
+  rectTransform: {fileID: 224526397039490558}
   slotImage: {fileID: 114306072525369076}
   stackText: {fileID: 114959133887715328}
 --- !u!114 &114674836689300440
@@ -4009,8 +4009,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224948275942204786}
   slotIndex: 0
+  rectTransform: {fileID: 224948275942204786}
   slotImage: {fileID: 114500557967758086}
   stackText: {fileID: 114616100342302462}
 --- !u!114 &114767916799873452
@@ -4242,8 +4242,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224433019700900880}
   slotIndex: 0
+  rectTransform: {fileID: 224433019700900880}
   slotImage: {fileID: 114776247686570628}
   stackText: {fileID: 114865241083568230}
 --- !u!114 &114821149316571838
@@ -4299,6 +4299,7 @@ MonoBehaviour:
   - {fileID: 114937992529410224}
   - {fileID: 114310144689461776}
   - {fileID: 114140355423297340}
+  slotType: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   inventoryListText: {fileID: 114851482530092902}
 --- !u!114 &114822918281565004
 MonoBehaviour:
@@ -4858,8 +4859,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224042018259114098}
   slotIndex: 0
+  rectTransform: {fileID: 224042018259114098}
   slotImage: {fileID: 114805476898447480}
   stackText: {fileID: 114045858214553584}
 --- !u!114 &114928760862852774
@@ -4893,8 +4894,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224923645793881040}
   slotIndex: 0
+  rectTransform: {fileID: 224923645793881040}
   slotImage: {fileID: 114519335956650606}
   stackText: {fileID: 114316142133742870}
 --- !u!114 &114941685388768440
@@ -4920,8 +4921,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224257869897064508}
   slotIndex: 0
+  rectTransform: {fileID: 224257869897064508}
   slotImage: {fileID: 114483018585218086}
   stackText: {fileID: 114200604228501426}
 --- !u!114 &114949564216303090
@@ -4997,8 +4998,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolding: {fileID: 0}
-  rectTransform: {fileID: 224493449663132220}
   slotIndex: 0
+  rectTransform: {fileID: 224493449663132220}
   slotImage: {fileID: 114253026728738540}
   stackText: {fileID: 114467463904170364}
 --- !u!114 &114962143458147406

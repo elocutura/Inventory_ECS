@@ -18,10 +18,12 @@ public class InventoryAction : IComponentData
         Move,
         MoveBySlot,
         Delete,
-        DeleteBySlot
+        DeleteBySlot,
+        MoveFromInventory
     }
 
     public action _action;
     public Item _item;
     public uint moveTo;
+    public InventoryData oldInventory;
 }
