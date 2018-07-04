@@ -9,11 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd7e352ee62faa0409574760b3366f3d, type: 3}
-  m_Name: DandyBox
+  m_Name: WeaponAwakening
   m_EditorClassIdentifier: 
-  itemID: 88
-  itemName: DandyBox
+  itemID: 384
+  itemName: WeaponAwakening
+  itemType: 2
   itemInventorySlot: 0
   quantity: 1
   maxQuantity: 1
-  itemIcon: {fileID: 21300000, guid: 0e297f56201b10641a34dcbeb7a069b5, type: 3}
+  itemIcon: {fileID: 21300000, guid: 5148132f67a2e1543a15ae9d5826f58d, type: 3}
