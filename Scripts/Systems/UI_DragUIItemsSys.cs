@@ -65,7 +65,7 @@ public class UI_DragUIItemsSys : ComponentSystem
         {
             Dictionary<UI_Slot, InventoryData> destinationSlotInventory = OnTopOfSlot();
             UI_Slot destinationSlot = null;
-            InventoryData destionationInventory = null;
+            InventoryData destinationInventory = null;
             Item i;
             Cursor.visible = true;
 
@@ -75,11 +75,11 @@ public class UI_DragUIItemsSys : ComponentSystem
                 foreach (KeyValuePair<UI_Slot, InventoryData> dictData in destinationSlotInventory)
                 {
                     destinationSlot = dictData.Key;
-                    destionationInventory = dictData.Value;
+                    destinationInventory = dictData.Value;
                 }
-                if (destionationInventory != null && destinationSlot != null)
+                if (destinationInventory != null && destinationSlot != null)
                 {
-                    if (destionationInventory == draggingFromInventory) // If the destination slot is in the same inventory as the items, tell the inventorySystem we want to move this item into the new pos
+                    if (destinationInventory == draggingFromInventory) // If the destination slot is in the same inventory as the items, tell the inventorySystem we want to move this item into the new pos
                     {
                         i = draggingSlot.itemHolding.CreateCopy();
 
@@ -93,28 +93,26 @@ public class UI_DragUIItemsSys : ComponentSystem
                             action._item.quantity = action._item.quantity / 2; // UNTIL UI FOR THIS, USTACK HALf
                         }
 
-                        destionationInventory.pendingActions.Add(action); // Add the action to the pending  and ask the inventorySystem to process the changes
+                        destinationInventory.pendingActions.Add(action); // Add the action to the pending  and ask the inventorySystem to process the changes
                         InventoryAction.AskForInventoryActionRequest();
                     }
                     else // If we are trying to move this item into a new inventory
                     {
-                        i = draggingSlot.itemHolding.CreateCopy();
+                        i = draggingSlot.itemHolding.CreateCopy(); // Get copy from the item we are trying to move
 
-                        InventoryAction depositAction = new InventoryAction(); // A deposit action for the inventory that will receive the item
-                        depositAction._action = InventoryAction.action.Deposit;
-                        depositAction._item = i;
-                        depositAction._item.itemInventorySlot = (uint) destinationSlot.slotIndex;
+                        InventoryAction action = new InventoryAction(); 
+                        action._action = InventoryAction.action.MoveFromInventory;
+                        action._item = i;
+                        action.oldInventory = draggingFromInventory;        // Setup the old inventory for the change
+                        action.moveTo = (uint) destinationSlot.slotIndex;   // Slot we are targetting in the new inventory
 
-                        InventoryAction deleteAction = new InventoryAction(); // A delete action from the current inventory
-                        deleteAction._action = InventoryAction.action.Delete;
-                        deleteAction._item = draggingSlot.itemHolding;
+                        destinationInventory.pendingActions.Add(action);
 
-                        draggingFromInventory.pendingActions.Add(deleteAction); // Assign both actions to the respective inventories and ask the inventorySystem to process the changes
-                        destionationInventory.pendingActions.Add(depositAction);
                         InventoryAction.AskForInventoryActionRequest();
                     }
                 }
             }
+            // Setup back all the values for non dragging state
             draggingSlot = null;
             draggingFromInventory = null;
 

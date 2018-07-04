@@ -61,10 +61,31 @@ public class InventorySystem : ComponentSystem {
                     {
                         MoveBySlot(invData, action);
                     }
+                    else if (action._action == InventoryAction.action.MoveFromInventory)
+                    {
+                        MoveFromInventory(invData, action);
+                    }
                     invData.pendingActions.Remove(action);
                 }
             }
             OnInventoryChanged(invData);
+        }
+    }
+
+    protected bool MoveFromInventory(InventoryData invData, InventoryAction action)
+    {
+        uint oldItemInventorySlot = action._item.itemInventorySlot; // Get the item slot for the inventory we are moving the item from
+        action._item.itemInventorySlot = action.moveTo; // Assign the slot we want to put in the new item for the Deposit function
+
+        if (Deposit(invData, action)) // If the deposit on this inventory was successful, remove item from the old inventory
+        {
+            action.oldInventory.inventoryItems.Remove(FindItemInSlot(action.oldInventory, oldItemInventorySlot)); // If the deposit on the new inventory was successful, remove item from the old inventory
+            OnInventoryChanged(action.oldInventory); // Update the old inventory to display the removal of that item
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -78,24 +99,31 @@ public class InventorySystem : ComponentSystem {
             if (invData.inventoryItems.Count >= invData.maxInventorySlots) // If the inventory is full, dont add anything to it
                 return false;
 
-            if (IsSlotTaken(invData, action._item.itemInventorySlot)) // If the slot we are trying to add this item to is occupied, assign a new one
-                action._item.itemInventorySlot = AssignSlot(invData);
+            if (IsSlotTaken(invData, action._item.itemInventorySlot) || !IsRightType (invData, action._item.itemInventorySlot, action._item.itemType)) // If the slot we are trying to add this item to is occupied or its not the right type, assign a new one
+                action._item.itemInventorySlot = AssignSlot(invData, action._item.itemType);
+
+            if (action._item.itemInventorySlot >= invData.maxInventorySlots) // If the previous call of AssignSlot gives us >= than the max inventory slots in the current inventory, there is no available slot for this item
+                return false;
 
             invData.inventoryItems.Add(action._item);
             return true;
         }
         else // Else its a stack and we have at least one item in the inventory
         {
-            if (action._item.itemInventorySlot != 0 && !IsSlotTaken(invData, action._item.itemInventorySlot)) // If we want to place the stack in an empty slot that's not the default one (0) force it there
+            if (action._item.itemInventorySlot != 0 && !IsSlotTaken(invData, action._item.itemInventorySlot) && IsRightType(invData, action._item.itemInventorySlot, action._item.itemType)) // If we want to place the stack in an empty slot that's not the default one (0) force it there
             {
                 invData.inventoryItems.Add(action._item);
+                return true;
+            }
+            else if (IsRightType (invData, action._item.itemInventorySlot, action._item.itemType))
+            {
+                invData.inventoryItems = stackDeposit(0, invData, action._item);
+                return true;
             }
             else
             {
-                invData.inventoryItems = stackDeposit(0, invData, action._item);
+                return false;
             }
-
-            return true;
         }
     }
 
@@ -108,7 +136,7 @@ public class InventorySystem : ComponentSystem {
                 return itemList;
 
             if (IsSlotTaken(invData, toDeposit.itemInventorySlot)) // If the slot we are trying to add this item to is occupied, assign a new one
-                toDeposit.itemInventorySlot = AssignSlot(invData);
+                toDeposit.itemInventorySlot = AssignSlot(invData, toDeposit.itemType);
 
             itemList.Add(toDeposit);
             return itemList;
@@ -180,7 +208,7 @@ public class InventorySystem : ComponentSystem {
         if (action._item.quantity <= 0) // If we are trying to move (0) items, dont do anything
             return false;
 
-        if (action.moveTo >= invData.maxInventorySlots) // Its trying to move an item to an unavailable slot in the inventory
+        if (action.moveTo >= invData.maxInventorySlots || !IsRightType(invData, action.moveTo, action._item.itemType)) // Its trying to move an item to an unavailable slot in the inventory
             return false;
 
         if (!IsSlotTaken(invData, action.moveTo)) // If the inventory slot we are trying to move to is empty, move instantly
@@ -207,7 +235,7 @@ public class InventorySystem : ComponentSystem {
         Item itemInSlot = FindItemInSlot(invData, action._item.itemInventorySlot); // Find the item in selected slot that we want to move
         Item itemToMoveTo = FindItemInSlot(invData, action.moveTo);
 
-        if (action.moveTo >= invData.maxInventorySlots || itemInSlot == null) // Its trying to move an item to an unavailable slot in the inventory or the slot selected is empty do nothing
+        if (action.moveTo >= invData.maxInventorySlots || !IsRightType(invData, action.moveTo, itemInSlot.itemType) || itemInSlot == null) // Its trying to move an item to an unavailable slot in the inventory or the slot selected is empty do nothing
             return false;
 
         if (itemToMoveTo == null) // If the inventory slot we are trying to move to is empty, move instantly the amount provided by the action
@@ -265,26 +293,19 @@ public class InventorySystem : ComponentSystem {
         }
     }
 
-    private uint AssignSlot(InventoryData invData)
+    private uint AssignSlot(InventoryData invData, Item.ItemType itemType)
     {
-        if (invData.inventoryItems.Count <= 0) // If its the first item in the inventory assign 0
+        uint slotToCheck = 0;
+        while (slotToCheck < invData.maxInventorySlots) // Check all slot numbers until the inventory max slots
         {
-            return 0;
-        }
-        else
-        {
-            uint slotToCheck = 0;
-            while (slotToCheck < invData.maxInventorySlots) // Check all slot numbers until the inventory max slots
+            if (!IsSlotTaken(invData, slotToCheck) && IsRightType(invData, slotToCheck, itemType)) // If it hasnt found an item with that slot and the slot accepts this item type, it means the slot is free and can be allocated to the current item
             {
-                if (!IsSlotTaken(invData, slotToCheck)) // if it hasnt found an item with that slot, it means the slot is free and can be allocated to the current item
-                {
-                    return slotToCheck;
-                }
-                slotToCheck++;
+                return slotToCheck;
             }
-            // Inventory is full
-            return invData.maxInventorySlots;
+            slotToCheck++;
         }
+        // Inventory is full
+        return invData.maxInventorySlots;
     }
     private bool IsSlotTaken( InventoryData invData, uint slotToCheck)
     {
@@ -301,6 +322,25 @@ public class InventorySystem : ComponentSystem {
         }
         return found;
 
+    }
+    private bool IsRightType(InventoryData invData, uint slotToCheck, Item.ItemType itemType)
+    {
+        if (slotToCheck >= invData.maxInventorySlots) // If we are trying to check an unexisting slot, return false
+        {
+            return false;
+        }
+        else if (invData.inventoryUIGrid[slotToCheck].slotType == Item.ItemType.Generic) // If this slot accepts any kind of item return true
+        {
+            return true;
+        }
+        else if (itemType == invData.inventoryUIGrid[slotToCheck].slotType) // If the slot type matches the type of item return true
+        {
+            return true;
+        }
+        else // All other cases are not allowed
+        {
+            return false;
+        }
     }
     private Item FindItemInSlot(InventoryData invData, uint slotToCheck)
     {
